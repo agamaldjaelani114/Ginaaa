@@ -1,1 +1,222 @@
 
+<index.html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Memories...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #0d0d11;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- SCREEN LOADING --- */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #070709;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 1s ease-out, visibility 1s;
+        }
+
+        .heart {
+            background-color: #ff4d6d;
+            display: inline-block;
+            height: 30px;
+            margin: 0 10px;
+            position: relative;
+            top: 0;
+            transform: rotate(-45deg);
+            width: 30px;
+            animation: beat 0.8s infinite alternate;
+        }
+
+        .heart:before, .heart:after {
+            content: "";
+            background-color: #ff4d6d;
+            border-radius: 50%;
+            height: 30px;
+            position: absolute;
+            width: 30px;
+        }
+
+        .heart:before { top: -15px; left: 0; }
+        .heart:after { left: 15px; top: 0; }
+
+        @keyframes beat {
+            0% { transform: scale(1) rotate(-45deg); }
+            100% { transform: scale(1.2) rotate(-45deg); }
+        }
+
+        .loading-text {
+            margin-top: 30px;
+            font-size: 14px;
+            letter-spacing: 5px;
+            color: #ff85a2;
+            text-transform: uppercase;
+        }
+
+        .dots {
+            display: inline-block;
+            animation: blink 1.4s infinite both;
+            font-size: 18px;
+        }
+
+        @keyframes blink {
+            0% { opacity: .2; }
+            20% { opacity: 1; }
+            100% { opacity: .2; }
+        }
+
+        /* --- KONTEN UTAMA --- */
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: opacity 1.5s ease-in;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Teks Romantis Melayang (Floating Text) */
+        .floating-text {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 16px;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 15s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% {
+                transform: translateY(-5vh) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        /* Foto/Video Utama di Tengah */
+        .card-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 90%;
+            width: 320px;
+        }
+
+        .photo-frame {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 133, 162, 0.3);
+        }
+
+        /* Mengatur agar video menyesuaikan frame */
+        .photo-frame video {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .card-container h2 {
+            font-size: 18px;
+            color: #ff85a2;
+            margin-bottom: 5px;
+        }
+
+        .card-container p {
+            font-size: 12px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Halaman Loading -->
+    <div id="loading-screen">
+        <div class="heart"></div>
+        <div class="loading-text">Loading Memories<span class="dots">...</span></div>
+    </div>
+
+    <!-- Halaman Utama -->
+    <div id="main-content">
+        <!-- Teks-teks romantis yang melayang secara acak -->
+        <div class="floating-text" style="left: 10%; animation-delay: 0s; font-size: 22px;">only you</div>
+        <div class="floating-text" style="left: 65%; animation-delay: 2s;">stay with me</div>
+        <div class="floating-text" style="left: 40%; animation-delay: 5s; color: rgba(255, 133, 162, 0.2);">you mean everything</div>
+        <div class="floating-text" style="left: 80%; animation-delay: 1s;">always on my mind</div>
+        <div class="floating-text" style="left: 20%; animation-delay: 7s;">my safe place</div>
+        <div class="floating-text" style="left: 55%; animation-delay: 4s; font-size: 20px;">forever</div>
+        <div class="floating-text" style="left: 75%; animation-delay: 9s;">i love you</div>
+        <div class="floating-text" style="left: 15%; animation-delay: 11s;">favorite person</div>
+
+        <!-- Kartu Utama -->
+        <div class="card-container">
+            <div class="photo-frame">
+                <!-- Tag <img> lama diganti dengan <video> agar dapat memutar video pilihanmu -->
+                <video autoplay loop muted playsinline>
+                    <source src="ssstik.io_@codecoder404_1782991900722.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung pemutaran video.
+                </video>
+            </div>
+            <h2>Always With You</h2>
+            <p>You are my today and all of my tomorrows.</p>
+        </div>
+    </div>
+
+    <script>
+        // Simulasi loading selama 3.5 detik sebelum masuk ke menu utama
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loading-screen');
+                const mainContent = document.getElementById('main-content');
+                
+                // Sembunyikan loading
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.visibility = 'hidden';
+                
+                // Tampilkan konten utama
+                mainContent.style.opacity = '1';
+                mainContent.style.visibility = 'visible';
+            }, 3500); // 3500 ms = 3.5 detik
+        });
+    </script>
+</body>
+</html>l>
